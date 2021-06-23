@@ -55,7 +55,7 @@ function cari_tot_toko($toko_dicari, $hasil_toko)
 }
 
 //query untuk ambil penjualan di kategori berdasarkan bulan (clean)
-$toko_perbulan = "SELECT s.nama_kota, sum(fp.amount),t.bulan,t.tahun
+$toko_perbulan = "SELECT s.nama_kota, sum(fp.amount)*100/(SELECT sum(amount) as total FROM fakta_pendapatan),t.bulan,t.tahun
 FROM fakta_pendapatan fp JOIN store s ON fp.store_id=s.store_id
 JOIN time t on fp.time_id=t.time_id
 GROUP BY s.nama_kota, t.bulan";
